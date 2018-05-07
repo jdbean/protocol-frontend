@@ -12,6 +12,12 @@ fetch('http://localhost:3000/authenticate', {
   }
 }).then((res) => res.json()).then((json) => {
   let token = json.auth_token
+
+  // fetch('ws://localhost:3000/cable', {
+  //   method: "GET",
+  //   headers: {Authorization: `token ${token}`}
+  // }).then(console.log)
+
   get_user(token)
 })
 
