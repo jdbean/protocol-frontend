@@ -1,3 +1,6 @@
+console.log(ActionCable)
+
+
 let postData = {
   "name":"Jeremy","password":"password"
 }
@@ -13,7 +16,7 @@ fetch('http://localhost:3000/authenticate', {
 }).then((res) => res.json()).then((json) => {
   let token = json.auth_token
   get_user(token)
-})
+}).then()
 
 function get_user(token) {
 fetch('http://localhost:3000/api/v1/users/1', {
@@ -26,3 +29,9 @@ fetch('http://localhost:3000/api/v1/users/1', {
   }
 }).then(res => (res.json())).then(console.log)
 }
+
+(function() {
+  this.App || (this.App = {});
+
+  App.cable = ActionCable.createConsumer("ws://localhost:3000/cable");
+}).call(this);
