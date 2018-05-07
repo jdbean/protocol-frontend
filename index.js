@@ -30,8 +30,16 @@ fetch('http://localhost:3000/api/v1/users/1', {
 }).then(res => (res.json())).then(console.log)
 }
 
-(function() {
-  this.App || (this.App = {});
+// (function() {
+//   this.App || (this.App = {});
+//
+//   App.cable = ActionCable.createConsumer("ws://localhost:3000/cable");
+// }).call(this);
 
-  App.cable = ActionCable.createConsumer("ws://localhost:3000/cable");
-}).call(this);
+ActionCable = require('actioncable')
+
+cable = ActionCable.createConsumer('ws://localhost:3000/cable')
+
+cable.subscriptions.create({channel: "ChatChannel"});
+
+// cable.subscriptions.create 'AppearanceChannel',
