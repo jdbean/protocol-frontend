@@ -1,5 +1,45 @@
-console.log(ActionCable)
+// LOGIN
 
+let renderMain = function() {
+  mainContentContainer.innerHTML = `
+    <form id=message-form>
+      Message:<br>
+      <input type="text" id=message-box name="message"><br>
+      <input id="submit" type="submit" value="Submit">
+    </form>`
+
+  const messageForm = document.querySelector('#message-form')
+  const messageBox = messageForm.querySelector('#message-box')
+
+  messageForm.addEventListener('submit', (e) => {
+
+    e.preventDefault()
+    channel.send({to: 'chat_new_room', message: messageBox.value })
+  });
+}
+
+let renderLogin = function() {
+  mainContentContainer.innerHTML = `
+    <form id=loginForm>
+      Username:<br>
+      <input type="text" id=userName name="username"><br>
+      Password:<br>
+      <input type="password" id=userName name="password"><br>
+      <input id="submit" type="submit" value="Submit">
+    </form>`
+  loginForm.onSubmit = (e) => {
+    e.preventDefault()
+  }
+  renderMain()
+}
+
+
+
+let is_loggedin = function() {
+  document.cookie ? renderMain() : renderLogin()
+}
+
+is_loggedin()
 
 let postData = {
   "name":"Jeremy","password":"password"
@@ -52,11 +92,3 @@ var channel = cable.subscriptions.create({channel:
         }
     }
 );
-
-const messageForm = document.querySelector('#message-form')
-const messageBox = messageForm.querySelector('#message-box')
-messageForm.addEventListener('submit', (e) => {
-
-  e.preventDefault()
-  channel.send({to: 'chat_new_room', message: messageBox.value })
-});
