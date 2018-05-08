@@ -1,9 +1,12 @@
 // LOGIN
 
+let serverAddress = '192.168.3.8:3000'
+// let serverAddress = 'localhost:3000'
+
 let renderMain = function() {
 
-  cable = ActionCable.createConsumer('ws://localhost:3000/cable')
-  // cable = ActionCable.createConsumer('ws://192.168.3.8:3000/cable')
+  // cable = ActionCable.createConsumer('ws://localhost:3000/cable')
+  cable = ActionCable.createConsumer(`ws://${serverAddress}/cable`)
 
   var channel = cable.subscriptions.create({channel:
        "ChatChannel", room: "new_room"},
@@ -67,7 +70,7 @@ let renderLogin = function(errors = []) {
     postData.name = userName.value
     postData.password = password.value
 
-    fetch('http://localhost:3000/authenticate', {
+    fetch(`http://${serverAddress}/authenticate`, {
       method: 'POST',
       body: JSON.stringify(postData),
       headers: {
@@ -103,7 +106,7 @@ is_loggedin()
 
 
 function get_user(token, name) {
-fetch('http://localhost:3000/api/v1/users/' + name, {
+fetch(`http://${serverAddress}/api/v1/users/` + name, {
   method: 'GET',
   headers: {
     Authorization: `token ${token}`,
