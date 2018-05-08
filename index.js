@@ -1,4 +1,3 @@
-// import ActionCable from 'actioncable';
 console.log(ActionCable)
 
 
@@ -34,9 +33,6 @@ fetch('http://localhost:3000/api/v1/users/1', {
 cable = ActionCable.createConsumer('ws://localhost:3000/cable')
 // cable = ActionCable.createConsumer('ws://192.168.3.8:3000/cable')
 
-
-// var cable = ActionCable.createConsumer('ws://localhost:3000/cable');
-
 var channel = cable.subscriptions.create({channel:
      "ChatChannel", room: "new_room"},
     {
@@ -62,10 +58,3 @@ messageForm.addEventListener('submit', (e) => {
   e.preventDefault()
   channel.send({to: 'chat_new_room', message: messageBox.value })
 });
-
-// cable.subscriptions.create({channel: "ChatChannel", room: "new_room"});
-// chatChannel.send({ sent_by: "JDBEAN", body: "This is a cool chat app." }));
-// let chatChannel = cable.subscriptions.create({ channel: "ChatChannel", room: "new_room" },
-//   received: (data) =>
-//   chatChannel.send({ sent_by: "Paul", body: "This is a cool chat app." })
-// cable.subscriptions.create 'AppearanceChannel',
