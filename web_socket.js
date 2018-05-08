@@ -1,4 +1,5 @@
-let serverAddress = '192.168.3.8:3000'
+// let serverAddress = '192.168.3.8:3000'
+let serverAddress = 'localhost:3000'
 
 function establishSocket() {
   cable = ActionCable.createConsumer(`ws://${serverAddress}/cable`)
