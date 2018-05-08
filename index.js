@@ -15,11 +15,13 @@ fetch('http://localhost:3000/authenticate', {
   }
 }).then((res) => res.json()).then((json) => {
   let token = json.auth_token
-   document.cookie = "user_name = Jeremy"
   get_user(token)
-}).then()
+})
 
 function get_user(token) {
+// var now = new Date();
+// now.setTime(now.getTime() + 1 * 5 * 1000);
+// document.cookie = "user_id=1; expires=" + now.toUTCString() + "; path=/";
 fetch('http://localhost:3000/api/v1/users/1', {
   method: 'GET',
   headers: {
@@ -28,8 +30,11 @@ fetch('http://localhost:3000/api/v1/users/1', {
     'Accept': 'application/json',
     'content-type': 'application/json'
   }
-}).then(res => (res.json())).then(console.log)
-}
+}).then(res => (res.json())).then(json => {
+  console.log(json)
+  var now = new Date();
+now.setTime(now.getTime() + 1 * 1000 * 1000);
+document.cookie = "user_name=Jeremy; expires=" + now.toUTCString() + "; path=/";
 
 cable = ActionCable.createConsumer('ws://localhost:3000/cable')
 // cable = ActionCable.createConsumer('ws://192.168.3.8:3000/cable')
@@ -60,3 +65,5 @@ messageForm.addEventListener('submit', (e) => {
   e.preventDefault()
   channel.send({to: 'chat_new_room', message: messageBox.value })
 });
+})
+}
