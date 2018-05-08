@@ -39,7 +39,8 @@ fetch('http://localhost:3000/api/v1/users/1', {
 
 // ActionCable = require('actioncable')
 
-cable = ActionCable.createConsumer('ws://localhost:3000/cable')
+// cable = ActionCable.createConsumer('ws://localhost:3000/cable')
+cable = ActionCable.createConsumer('ws://192.168.3.8:3000/cable')
 
 
 // var cable = ActionCable.createConsumer('ws://localhost:3000/cable');
@@ -59,6 +60,7 @@ var channel = cable.subscriptions.create({channel:
             let newMessage = document.createElement('p')
             newMessage.innerText = `${data.message}`
             document.querySelector('body').appendChild(newMessage)
+        }
     }
 );
 
@@ -66,9 +68,7 @@ const messageForm = document.querySelector('#message-form')
 const messageBox = messageForm.querySelector('#message-box')
 messageForm.addEventListener('submit', (e) => {
   e.preventDefault()
-
   channel.send({to: 'chat_new_room', message: messageBox.value })
-
 });
 
 // cable.subscriptions.create({channel: "ChatChannel", room: "new_room"});
