@@ -31,16 +31,8 @@ fetch('http://localhost:3000/api/v1/users/1', {
 }).then(res => (res.json())).then(console.log)
 }
 
-// (function() {
-//   this.App || (this.App = {});
-//
-//   App.cable = ActionCable.createConsumer("ws://localhost:3000/cable");
-// }).call(this);
-
-// ActionCable = require('actioncable')
-
-// cable = ActionCable.createConsumer('ws://localhost:3000/cable')
-cable = ActionCable.createConsumer('ws://192.168.3.8:3000/cable')
+cable = ActionCable.createConsumer('ws://localhost:3000/cable')
+// cable = ActionCable.createConsumer('ws://192.168.3.8:3000/cable')
 
 
 // var cable = ActionCable.createConsumer('ws://localhost:3000/cable');
