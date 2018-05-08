@@ -36,9 +36,9 @@ let renderMain = function() {
   const messageBox = messageForm.querySelector('#message-box')
 
   messageForm.addEventListener('submit', (e) => {
-
+    let date = new Date()
     e.preventDefault()
-    channel.send({to: 'chat_new_room', message: messageBox.value })
+    channel.send({to: 'chat_new_room', message: messageBox.value, sender: getCookie('user_name'), time: date})
   });
 }
 
@@ -119,6 +119,14 @@ document.cookie = `user_id=${json.id}; expires=` + now.toUTCString() + "; path=/
 document.cookie = `user_name=${json.name}; expires=` + now.toUTCString() + "; path=/";
 
 
+console.log("username is " + getCookie('user_name'))
+console.log("user id is " + getCookie('user_id'))
 renderMain()
 })
+}
+
+function getCookie(name) {
+  var value = "; " + document.cookie;
+  var parts = value.split("; " + name + "=");
+  if (parts.length == 2) return parts.pop().split(";").shift();
 }
