@@ -1,3 +1,4 @@
+// import ActionCable from 'actioncable';
 console.log(ActionCable)
 
 
@@ -36,10 +37,43 @@ fetch('http://localhost:3000/api/v1/users/1', {
 //   App.cable = ActionCable.createConsumer("ws://localhost:3000/cable");
 // }).call(this);
 
-ActionCable = require('actioncable')
+// ActionCable = require('actioncable')
 
 cable = ActionCable.createConsumer('ws://localhost:3000/cable')
 
-cable.subscriptions.create({channel: "ChatChannel"});
 
+// var cable = ActionCable.createConsumer('ws://localhost:3000/cable');
+
+var channel = cable.subscriptions.create({channel:
+     "ChatChannel", room: "new_room"},
+    {
+        connected: function() {
+            console.log("connected");
+        },
+        disconnected: function() {
+            console.log("disconnected");
+        },
+        received: function(data) {
+            console.log('received');
+            console.log(data);
+            let newMessage = document.createElement('p')
+            newMessage.innerText = `${data.message}`
+            document.querySelector('body').appendChild(newMessage)
+    }
+);
+
+const messageForm = document.querySelector('#message-form')
+const messageBox = messageForm.querySelector('#message-box')
+messageForm.addEventListener('submit', (e) => {
+  e.preventDefault()
+
+  channel.send({to: 'chat_new_room', message: messageBox.value })
+
+});
+
+// cable.subscriptions.create({channel: "ChatChannel", room: "new_room"});
+// chatChannel.send({ sent_by: "JDBEAN", body: "This is a cool chat app." }));
+// let chatChannel = cable.subscriptions.create({ channel: "ChatChannel", room: "new_room" },
+//   received: (data) =>
+//   chatChannel.send({ sent_by: "Paul", body: "This is a cool chat app." })
 // cable.subscriptions.create 'AppearanceChannel',
