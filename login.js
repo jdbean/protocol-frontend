@@ -23,11 +23,10 @@ let loadLogin = function(errors = []) {
     })
 
   }
-  // renderMain()
 }
 
 function authUser(formData) {
-  return fetch(`http://${serverAddress}/authenticate`, {
+  return fetch(`http://${ServerAddress}/authenticate`, {
     method: 'POST',
     body: JSON.stringify(formData),
     headers: {

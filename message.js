@@ -14,4 +14,17 @@ function renderMessageForm() {
     e.preventDefault()
     channel.send({to: 'chat_new_room', message: messageBox.value, sender: getCookie('user_name'), time: date})
   });
+
 }
+function renderMessagesDiv() {
+  let messagesDiv = document.createElement('div')
+  messagesDiv.id = 'messages'
+  messagesDiv.innerHTML= '<h2> Messages </h2>'
+  mainContentContainer.append(messagesDiv)
+}
+// function renderMembersListDiv() {
+//   let membersListDiv = document.createElement('div')
+//   membersListDiv.id = 'members'
+//   membersListDiv.innerHTML= '<h2> Members List </h2>'
+//   mainContentContainer.append(membersListDiv)
+// }
