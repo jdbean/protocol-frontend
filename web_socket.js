@@ -33,6 +33,7 @@ function newChannel() {
                 case "message":
                   let newMessage = document.createElement('p')
                   newMessage.innerText = `${data.message}`
+              
                   messages.appendChild(newMessage)
                   break;
                 // case "members_list":
@@ -53,4 +54,5 @@ function newChannel() {
           }
       }
   );
+  console.log(channel)
 }

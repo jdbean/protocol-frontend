@@ -18,8 +18,8 @@ let loadLogin = function(errors = []) {
       console.log(json)
       let token = json.auth_token
       document.cookie = `session_token=${json.auth_token}; expires=` + setExpiration(60).toUTCString() + "; path=/";
-      get_user(token, formData.name)
-      renderMain()
+      get_user(token, formData.name).then(res => {renderMain()})
+
     }
     })
 
