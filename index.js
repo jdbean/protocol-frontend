@@ -5,6 +5,8 @@ let renderMain = function() {
   messages.id = 'messages'
   document.body.appendChild(messages)
   renderMessageForm()
+  renderMessagesDiv()
+  // renderMembersListDiv()
 }
 document.addEventListener('DOMContentLoaded', () => {
   is_loggedin()
