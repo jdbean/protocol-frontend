@@ -18,7 +18,7 @@ function newChannel() {
           received: function(data) {
               console.log('received');
               console.log(data);
-<<<<<<< HEAD
+
               let newMessage = document.createElement('p')
               newMessage.innerText = `${data.message}`
               let br = document.createElement('br')
@@ -28,7 +28,7 @@ function newChannel() {
               let messages = document.querySelector('#messages')
               messages.appendChild(newMessage)
               messages.appendChild(br)
-=======
+
               switch(data.message_type) {
                 case "message":
                   let newMessage = document.createElement('p')
@@ -49,7 +49,7 @@ function newChannel() {
                 default:
                     console.log("Recived a broadcast without a message_type")
               }
->>>>>>> 9b444db8391d735e944bf697e304675f3e4064bb
+
           }
       }
   );
