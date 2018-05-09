@@ -12,14 +12,12 @@ function renderMessageForm() {
   messageForm.addEventListener('submit', (e) => {
     let date = new Date()
     e.preventDefault()
-    translate('en', messageBox.value).then(translated => {
       channel.send({
         to: 'chat_new_room',
-        message: translated,
+        message: messageBox.value,
         sender: getCookie('user_name'),
         time: date
       })
-    });
   })
 }
 
@@ -36,3 +34,30 @@ function renderMessagesDiv() {
 //   membersListDiv.innerHTML= '<h2> Members List </h2>'
 //   mainContentContainer.append(membersListDiv)
 // }
+function renderMessage(data) {
+  translate(getCookie('user_lang'), data.message).then(message => {
+  let newMessage = document.createElement('p')
+  newMessage.innerText = `${message}`
+  let br = document.createElement('br')
+  newMessage.className = "newMessage"
+  messages.appendChild(newMessage)
+  messages.appendChild(br)
+})
+}
+function loadMessages(channel) {
+  return fetch('http://localhost:3000/channels/' + channel, {
+    method: "GET", headers: {
+      Authorization: `token ${getCookie('session_token')}`,
+      mode: 'no-cors',
+      'Accept': 'application/json',
+      'content-type': 'application/json'
+    }
+  }).then(res => res.json())
+}
+function renderMessages(channel) {
+  loadMessages(channel).then(json => {
+    json.messages.forEach(message => {
+      renderMessage(message)
+    })
+  })
+}

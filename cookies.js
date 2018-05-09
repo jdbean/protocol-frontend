@@ -1,5 +1,5 @@
 function setCookies(json) {
-
+document.cookie = `user_lang=${json.language.code}; expires=` + setExpiration(60).toUTCString() + "; path=/";
 document.cookie = `user_id=${json.id}; expires=` + setExpiration(60).toUTCString() + "; path=/";
 document.cookie = `user_name=${json.name}; expires=` + setExpiration(60).toUTCString() + "; path=/";
 }
@@ -15,6 +15,7 @@ function setExpiration(minutes) {
   return now
 }
 function deleteCookies() {
+  document.cookie = `user_lang=; expires=` + setExpiration(0).toUTCString() + "; path=/";
   document.cookie = `user_id=; expires=` + setExpiration(0).toUTCString() + "; path=/";
   document.cookie = `user_name=; expires=` + setExpiration(0).toUTCString() + "; path=/";
   document.cookie = `session_token=; expires=` + setExpiration(0).toUTCString() + "; path=/";

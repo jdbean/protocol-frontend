@@ -17,35 +17,26 @@ function newChannel() {
     received: function(data) {
       console.log('received');
       console.log(data);
-
-      let newMessage = document.createElement('p')
-      newMessage.innerText = `${data.message}`
-
-      let br = document.createElement('br')
-      newMessage.className = "newMessage"
-
       switch (data.message_type) {
         case "message":
-          let newMessage = document.createElement('p')
-          newMessage.innerText = `${data.message}`
-          messages.appendChild(newMessage)
+          renderMessage(data)
           break;
-        // case "members_list":
-        // members.innerHTML= '<h2> Members List </h2>'
-        //   data.members.forEach( member => {
-        //     let newMember = document.createElement('li')
-        //     newMember.innerText = member
-        //     members.appendChild(newMember)
-        //   })
-        // break;
         case "message_error":
           console.log("RECIEVED AN ERROR MESSAGE")
           break;
         default:
           console.log("Recived a broadcast without a message_type")
-      }
-
-    }
-  });
+      };
   console.log(channel)
 }
+})
+}
+
+// case "members_list":
+// members.innerHTML= '<h2> Members List </h2>'
+//   data.members.forEach( member => {
+//     let newMember = document.createElement('li')
+//     newMember.innerText = member
+//     members.appendChild(newMember)
+//   })
+// break;
