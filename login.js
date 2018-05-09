@@ -27,7 +27,7 @@ let loadLogin = function(errors = []) {
 }
 
 function authUser(formData) {
-  return fetch(`http://${ServerAddress}/authenticate`, {
+  return fetch(`http://${serverAddress}/authenticate`, {
     method: 'POST',
     body: JSON.stringify(formData),
     headers: {

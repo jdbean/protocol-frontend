@@ -1,8 +1,8 @@
-// const ServerAddress = '192.168.3.8:3000'
-const ServerAddress = 'localhost:3000'
+// const serverAddress = '192.168.3.8:3000'
+const serverAddress = 'localhost:3000'
 
 function establishSocket() {
-  cable = ActionCable.createConsumer(`ws://${ServerAddress}/cable`)
+  cable = ActionCable.createConsumer(`ws://${serverAddress}/cable`)
 }
 
 function newChannel() {

@@ -1,5 +1,5 @@
 function get_user(token, name) {
-fetch(`http://${ServerAddress}/api/v1/users/` + name, {
+fetch(`http://${serverAddress}/api/v1/users/` + name, {
   method: 'GET',
   headers: {
     Authorization: `token ${token}`,
