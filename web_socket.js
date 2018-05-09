@@ -25,9 +25,9 @@ function newChannel() {
               newMessage.className = "newMessage"
               // document.querySelector('body').appendChild(newMessage)
               // document.body.appendChild(br)
-              let messages = document.querySelector('#messages')
-              messages.appendChild(newMessage)
-              messages.appendChild(br)
+              // let messages = document.querySelector('#messages')
+              // messages.appendChild(newMessage)
+              // messages.appendChild(br)
 
               switch(data.message_type) {
                 case "message":
