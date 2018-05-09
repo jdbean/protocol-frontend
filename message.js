@@ -13,15 +13,23 @@ function renderMessageForm() {
     let date = new Date()
     e.preventDefault()
     translate('en', messageBox.value).then(translated => {
-    channel.send({to: 'chat_new_room', message: translated, sender: getCookie('user_name'), time: date})
-  }); })
+      channel.send({
+        to: 'chat_new_room',
+        message: translated,
+        sender: getCookie('user_name'),
+        time: date
+      })
+    });
+  })
 }
 
 function renderMessagesDiv() {
   let messagesDiv = document.createElement('div')
   messagesDiv.id = 'messages'
-  messagesDiv.innerHTML= '<h2> Messages </h2>'
-  mainContentContainer.append(messagesDiv) }
+  messagesDiv.innerHTML = '<h2> Messages </h2>'
+  mainContentContainer.append(messagesDiv)
+}
+
 // function renderMembersListDiv() {
 //   let membersListDiv = document.createElement('div')
 //   membersListDiv.id = 'members'

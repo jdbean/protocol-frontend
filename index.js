@@ -9,6 +9,7 @@ let renderMain = function() {
   renderMessagesDiv()
   // renderMembersListDiv()
 }
+
 document.addEventListener('DOMContentLoaded', () => {
   is_loggedin()
 })

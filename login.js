@@ -9,20 +9,18 @@ let loadLogin = function(errors = []) {
     formData.password = password.value
     authUser(formData).then((res) => {
       if (res.status === 401) {
-    loadLogin(["Invalid Username or Password"])
-  } else {
-    return res.json()
-  }
-}).then((json) => {
-  if (typeof json === 'object') {
-      console.log(json)
-      let token = json.auth_token
-      document.cookie = `session_token=${json.auth_token}; expires=` + setExpiration(60).toUTCString() + "; path=/";
-      get_user(token, formData.name).then(res => {renderMain()})
-
-    }
+        loadLogin(["Invalid Username or Password"])
+      } else {
+        return res.json()
+      }
+    }).then((json) => {
+      if (typeof json === 'object') {
+        console.log(json)
+        let token = json.auth_token
+        document.cookie = `session_token=${json.auth_token}; expires=` + setExpiration(60).toUTCString() + "; path=/";
+        get_user(token, formData.name).then(res => renderMain())
+      }
     })
-
   }
 }
 
@@ -31,9 +29,9 @@ function authUser(formData) {
     method: 'POST',
     body: JSON.stringify(formData),
     headers: {
-      mode:'no-cors',
+      mode: 'no-cors',
       'Accept': 'application/json',
-      "Content-Type" : 'application/json'
+      "Content-Type": 'application/json'
     }
   })
 }
@@ -49,6 +47,7 @@ function renderLoginForm() {
       <input id="submit" type="submit" value="Submit">
     </form>`
 }
+
 function removeErrors() {
   let errors = document.querySelectorAll('.error')
   errors.forEach(el => el.remove())
@@ -60,8 +59,7 @@ function renderErrors(errors = []) {
     error.className = 'error'
     error.innerHTML = el
     document.body.prepend(error)
-  }
-  )
+  })
 }
 
 
