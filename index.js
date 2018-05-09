@@ -1,3 +1,6 @@
+// const serverAddress = '192.168.3.8:3000'
+const serverAddress = 'localhost:3000'
+
 let renderMain = function() {
   establishSocket()
   newChannel()
