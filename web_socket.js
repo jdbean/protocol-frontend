@@ -31,7 +31,7 @@ function newChannel() {
                 //     newMember.innerText = member
                 //     members.appendChild(newMember)
                 //   })
-                  break;
+                  // break;
                 case "message_error":
                   console.log("RECIEVED AN ERROR MESSAGE")
                   break;
