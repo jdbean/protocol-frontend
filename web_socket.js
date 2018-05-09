@@ -20,7 +20,13 @@ function newChannel() {
               console.log(data);
               let newMessage = document.createElement('p')
               newMessage.innerText = `${data.message}`
-              document.querySelector('body').appendChild(newMessage)
+              let br = document.createElement('br')
+              newMessage.className = "newMessage"
+              // document.querySelector('body').appendChild(newMessage)
+              // document.body.appendChild(br)
+              let messages = document.querySelector('#messages')
+              messages.appendChild(newMessage)
+              messages.appendChild(br)
           }
       }
   );

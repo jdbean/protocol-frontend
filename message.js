@@ -12,6 +12,7 @@ function renderMessageForm() {
   messageForm.addEventListener('submit', (e) => {
     let date = new Date()
     e.preventDefault()
-    channel.send({to: 'chat_new_room', message: messageBox.value, sender: getCookie('user_name'), time: date})
-  });
+    translate('en', messageBox.value).then(translated => {
+    channel.send({to: 'chat_new_room', message: translated, sender: getCookie('user_name'), time: date})
+  }); })
 }
