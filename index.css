@@ -1,3 +1,29 @@
+/* #message-form {
+  display: inline-block;
+  position: relative;
+  left: 20%;
+  top: 50em;
+  width: 150%;
+
+  font-size: 100%;
+}
+input {
+  width: 50%;
+}
+p {
+  top: 40em;
+  display: inline-block;
+  border-color: black;
+  position: relative;
+  left: 20%;
+}
+#messages {
+  position: absolute;
+  bottom: 100%;
+  left: 30%;
+} */
+
+
 @import url(https://fonts.googleapis.com/css?family=Lato:400,700);
 *, *:before, *:after {
   box-sizing: border-box;
@@ -17,7 +43,6 @@ body {
 .container {
   margin: 0 auto;
   width: 750px;
-  height: 857px;
   background: #444753;
   border-radius: 5px;
 }
@@ -47,6 +72,10 @@ body {
   height: 770px;
 }
 .chat-history ul{
+  list-style-type: none;
+}
+
+#chatHistory ul{
   list-style-type: none;
 }
 .people-list ul li {
@@ -213,4 +242,28 @@ body {
   content: " ";
   clear: both;
   height: 0;
+}
+.loader {
+  border: 16px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 16px solid #3498db;
+  width: 120px;
+  height: 120px;
+  -webkit-animation: spin 2s linear infinite; /* Safari */
+  animation: spin 2s linear infinite;
+  display: none;
+  position: absolute;
+  top: 50%;
+  right: 35%
+}
+
+/* Safari */
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
 }

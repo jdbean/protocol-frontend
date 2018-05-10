@@ -40,21 +40,43 @@ function renderMessage(data) {
   translate(getCookie('user_lang'), data.message).then(message => {
     if (!!data.user) {
       var user = data.user.name
+      var timestamp = data.created_at
+      var time = new Date(timestamp)
+      time = time.toDateString()
     }
     else {
+      // let days = {0: "Sunday", 1: "Monday", 2: "Tuesday", 3: "Wednesday", 4: "Thursday", 5: "Friday", 6: "Saturday"}
       var user = data.sender
+      var time = new Date(Date.now())
+      time = time.toDateString()
     }
     console.log(message)
   let newMessage = document.createElement('li')
   newMessage.className = "clearfix"
+
+  if (user === getCookie('user_name')) {
   newMessage.innerHTML += `
     <div class="message-data align-right">
-      <span class="message-data-time">${data.created_at}</span> &nbsp; &nbsp;
+      <span class="message-data-time">${time}</span> &nbsp; &nbsp;
       <span class="message-data-name">${user}</span> <i class="fa fa-circle me"></i>
     </div>
     <div class="message other-message float-right">
       ${message}
     </div>`
+  }
+  else {
+    newMessage.innerHTML += `
+    <li>
+           <div class="message-data">
+             <span class="message-data-name"><i class="fa fa-circle online"></i> ${user}</span>
+             <span class="message-data-time">${time}</span>
+           </div>
+           <div class="message my-message">
+            ${message}
+           </div>
+         </li>
+    `
+  }
   chatHistory.appendChild(newMessage)
   // newMessage.innerText = `${message}`
   // let br = document.createElement('br')
@@ -68,7 +90,7 @@ function renderMessage(data) {
 })
 }
 function loadMessages(channel) {
-  console.log(channel)
+
   return fetch('http://localhost:3000/channels/' + channel, {
     method: "GET", headers: {
       Authorization: `token ${getCookie('session_token')}`,
@@ -79,12 +101,16 @@ function loadMessages(channel) {
   }).then(res => res.json())
 }
 function renderMessages(channel) {
-
+  // chatHistory.style.display = 'none'
+  // loading.style.display = 'block'
   console.log(channel)
   loadMessages(channel).then(json => {
-
-    json.messages.forEach(message => {
+  json.messages.forEach(message => {
       renderMessage(message)
     })
+    return 'done'
+  }).then(res => {
+    // chatHistory.style.display = 'block'
+    // loading.style.display = 'none'
   })
 }
