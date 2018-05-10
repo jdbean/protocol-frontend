@@ -1,4 +1,4 @@
-function messageListener() {
+function messageListener(channelName) {
   messageToSend.addEventListener("keyup", function(event) {
     // Cancel the default action, if needed
     event.preventDefault();
@@ -12,7 +12,7 @@ function messageListener() {
     e.preventDefault()
     let date = new Date()
       channel.send({
-        to: 'chat_new_room',
+        to: `chat_${channelName}`,
         message: messageToSend.value,
         sender: getCookie('user_name'),
         time: date

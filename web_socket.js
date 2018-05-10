@@ -2,10 +2,10 @@ function establishSocket() {
   cable = ActionCable.createConsumer(`ws://${serverAddress}/cable`)
 }
 
-function newChannel() {
+function newChannel(channelName) {
   channel = cable.subscriptions.create({
     channel: "ChatChannel",
-    room: "new_room",
+    room: channelName,
     username: getCookie("user_name")
   }, {
     connected: function() {
