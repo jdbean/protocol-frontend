@@ -42,13 +42,14 @@ function renderMessage(data, message) {
       var user = data.user.name
       var timestamp = data.created_at
       var time = new Date(timestamp)
-      time = time.toDateString()
+      time = `${time.toDateString()} at ${time.getHours()}:${time.getMinutes()}:${time.getSeconds()}`
     }
     else {
+
       // let days = {0: "Sunday", 1: "Monday", 2: "Tuesday", 3: "Wednesday", 4: "Thursday", 5: "Friday", 6: "Saturday"}
       var user = data.sender
       var time = new Date(Date.now())
-      time = time.toDateString()
+      time = `${time.toDateString()} at ${time.getHours()}:${time.getMinutes()}:${time.getSeconds()}`
     }
     console.log(message)
   let newMessage = document.createElement('li')
@@ -98,16 +99,23 @@ function loadMessages(channel) {
   }).then(res => res.json())
 }
 function renderMessages(channel) {
-  // chatHistory.style.display = 'none'
-  // loading.style.display = 'block'
+  chatHistory.style.display = 'none'
+  loading.style.display = 'block'
   console.log(channel)
+  var promises = []
   loadMessages(channel).then(json => {
   json.messages.forEach(message => {
-      translate(getCookie('user_lang'), message.message).then(text => renderMessage(message, text))
+      promises.push(translate(getCookie('user_lang'), message.message))
+      console.log('hi')
     })
-    return 'done'
-  }).then(res => {
-    // chatHistory.style.display = 'block'
-    // loading.style.display = 'none'
+
+    Promise.all(promises).then(res => {
+    for(let i=0; i < promises.length; i++) {
+      renderMessage(json.messages[i], res[i])
+    }
+    chatHistory.style.display = 'block'
+    loading.style.display = 'none'
+    chatWrapper.scrollTop = chatWrapper.scrollHeight;
+    })
   })
 }
