@@ -13,6 +13,11 @@ let switchChannel = function (channelName = "new_room") {
   newChannel(channelName)
   messageListener(channelName)
   renderMessages(channelName)
+  renderCurrentChannelName(channelName)
+}
+
+let renderCurrentChannelName = function (channelName) {
+  document.querySelector('.chat-with').innerText = channelName
 }
 
 document.addEventListener('DOMContentLoaded', () => {
