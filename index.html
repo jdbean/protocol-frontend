@@ -57,20 +57,21 @@
       </div>
       <!-- end chat-header -->
 
-      <div class="chat-history">
+      <div id= "chatWrapper" class="chat-history">
         <ul id='chatHistory'>
         </ul>
       </div>
       <!-- end chat-history -->
 
       <div class="chat-message clearfix">
-        <textarea name="message-to-send" id="message-to-send" placeholder="Type your message" rows="3"></textarea>
-
+        <form id= "messageForm">
+        <textarea name="message-to-send" id="messageToSend" placeholder="Type your message" rows="3"></textarea>
         <i class="fa fa-file-o"></i> &nbsp;&nbsp;&nbsp;
         <i class="fa fa-file-image-o"></i>
 
-        <button>Send</button>
+        <button id="sendButton">Send</button>
         <button onclick="deleteCookies()" id=deleteCookies>Delete Cookies</button>
+        </form>
       </div>
       <!-- end chat-message -->
 

@@ -1,25 +1,25 @@
-// function renderMessageForm() {
-//   mainContentContainer.innerHTML = `
-//     <form id=message-form>
-//       Message:<br>
-//       <input type="text" id=message-box name="message"><br>
-//       <input id="submit" type="submit" value="Submit">
-//     </form>`
-//
-//   const messageForm = document.querySelector('#message-form')
-//   const messageBox = messageForm.querySelector('#message-box')
-//
-//   messageForm.addEventListener('submit', (e) => {
-//     let date = new Date()
-//     e.preventDefault()
-//       channel.send({
-//         to: 'chat_new_room',
-//         message: messageBox.value,
-//         sender: getCookie('user_name'),
-//         time: date
-//       })
-//   })
-// }
+function messageListener() {
+  messageToSend.addEventListener("keyup", function(event) {
+    // Cancel the default action, if needed
+    event.preventDefault();
+    // Number 13 is the "Enter" key on the keyboard
+    if (event.keyCode === 13) {
+      // Trigger the button element with a click
+      sendButton.click();
+    }
+  });
+  messageForm.addEventListener('submit', (e) => {
+    e.preventDefault()
+    let date = new Date()
+      channel.send({
+        to: 'chat_new_room',
+        message: messageToSend.value,
+        sender: getCookie('user_name'),
+        time: date
+      })
+      messageToSend.value = ""
+  })
+}
 
 function renderMessagesDiv() {
   let messagesDiv = document.createElement('div')
@@ -38,13 +38,19 @@ function renderMessage(data) {
 
   console.log(data)
   translate(getCookie('user_lang'), data.message).then(message => {
+    if (!!data.user) {
+      var user = data.user.name
+    }
+    else {
+      var user = data.sender
+    }
     console.log(message)
   let newMessage = document.createElement('li')
   newMessage.className = "clearfix"
   newMessage.innerHTML += `
     <div class="message-data align-right">
       <span class="message-data-time">${data.created_at}</span> &nbsp; &nbsp;
-      <span class="message-data-name">${data.user.name}</span> <i class="fa fa-circle me"></i>
+      <span class="message-data-name">${user}</span> <i class="fa fa-circle me"></i>
     </div>
     <div class="message other-message float-right">
       ${message}
@@ -56,7 +62,7 @@ function renderMessage(data) {
   // messages.appendChild(newMessage)
   // messages.appendChild(br)
 
-
+  chatWrapper.scrollTop = chatWrapper.scrollHeight;
 
 
 })
@@ -76,7 +82,7 @@ function renderMessages(channel) {
 
   console.log(channel)
   loadMessages(channel).then(json => {
-    
+
     json.messages.forEach(message => {
       renderMessage(message)
     })
