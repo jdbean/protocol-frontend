@@ -3,6 +3,7 @@ function establishSocket() {
 }
 
 function newChannel(channelName) {
+  document.cookie = `current_room=chat_${channelName}; expires=` + setExpiration(60).toUTCString() + "; path=/";
   channel = cable.subscriptions.create({
     channel: "ChatChannel",
     room: channelName,
@@ -19,7 +20,9 @@ function newChannel(channelName) {
       console.log(data);
       switch (data.message_type) {
         case "message":
+        if (data.to === getCookie('current_room')) {
         translate(getCookie('user_lang'), data.message).then(message => renderMessage(data, message))
+      }
           break;
         case "message_error":
           console.log("RECIEVED AN ERROR MESSAGE")
@@ -27,7 +30,7 @@ function newChannel(channelName) {
         default:
           console.log("Recived a broadcast without a message_type")
       };
-  console.log(channel)
+console.log(channel)
 }
 })
 }
