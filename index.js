@@ -3,16 +3,16 @@ const serverAddress = 'localhost:3000'
 
 let renderMain = function() {
   establishSocket()
-  newChannel()
-  // let messages = document.createElement('div')
-  // renderMessageForm()
-  // renderMessagesDiv()
-  messageListener()
-  renderMessages('new_room')
-  // renderMembersListDiv()
+  switchChannel()
   loginContent.style.display = 'none'
   mainContentContainer.style.display = 'block'
 
+}
+
+let switchChannel = function () {
+  newChannel()
+  messageListener()
+  renderMessages('new_room')
 }
 
 document.addEventListener('DOMContentLoaded', () => {
