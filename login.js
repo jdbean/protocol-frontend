@@ -61,6 +61,11 @@ function renderErrors(errors = []) {
     document.body.prepend(error)
   })
 }
+function logOut() {
+  deleteCookies()
+  loginContent.style.display = 'block'
+  mainContentContainer.style.display = 'none'
+}
 
 
 let is_loggedin = function() {

@@ -19,4 +19,5 @@ function deleteCookies() {
   document.cookie = `user_id=; expires=` + setExpiration(0).toUTCString() + "; path=/";
   document.cookie = `user_name=; expires=` + setExpiration(0).toUTCString() + "; path=/";
   document.cookie = `session_token=; expires=` + setExpiration(0).toUTCString() + "; path=/";
+  document.cookie = `current_room=; expires=` + setExpiration(0).toUTCString() + "; path=/";
 }
