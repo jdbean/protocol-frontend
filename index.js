@@ -46,7 +46,11 @@ let renderChannelList = function() {
         </div>
       </li>
       `
+      newChannel.addEventListener('click', () => {
+        switchChannel(channel.title)
+      });
       channelList.appendChild(newChannel)
+
     });
   }
 )
