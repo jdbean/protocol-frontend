@@ -68,14 +68,14 @@ function renderMessage(data, message) {
   else {
     newMessage.innerHTML += `
     <li>
-           <div class="message-data">
-             <span class="message-data-name"><i class="fa fa-circle online"></i> ${user}</span>
-             <span class="message-data-time">${time}</span>
-           </div>
-           <div class="message my-message">
-            ${message}
-           </div>
-         </li>
+     <div class="message-data">
+       <span class="message-data-name"><i class="fa fa-circle online"></i> ${user}</span>
+       <span class="message-data-time">${time}</span>
+     </div>
+     <div class="message my-message">
+      ${message}
+     </div>
+   </li>
     `
   }
   chatHistory.appendChild(newMessage)
