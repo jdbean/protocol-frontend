@@ -9,10 +9,10 @@ let renderMain = function() {
 
 }
 
-let switchChannel = function () {
-  newChannel()
-  messageListener()
-  renderMessages('new_room')
+let switchChannel = function (channelName = "new_room") {
+  newChannel(channelName)
+  messageListener(channelName)
+  renderMessages(channelName)
 }
 
 document.addEventListener('DOMContentLoaded', () => {
