@@ -33,8 +33,9 @@ let renderChannelList = function() {
     }).then(res => res.json()
   ).then(json => {
     channelList = document.querySelector('.list')
+    channelList.innerHTML = ""
     json.forEach(function(channel) {
-      newChannel = document.createElement('li')
+      let newChannel = document.createElement('li')
       newChannel.className = "clearfix"
       newChannel.innerHTML=`
       <li class="clearfix">
