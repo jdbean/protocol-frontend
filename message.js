@@ -34,10 +34,10 @@ function renderMessagesDiv() {
 //   membersListDiv.innerHTML= '<h2> Members List </h2>'
 //   mainContentContainer.append(membersListDiv)
 // }
-function renderMessage(data) {
+
+function renderMessage(data, message) {
 
   console.log(data)
-  translate(getCookie('user_lang'), data.message).then(message => {
     if (!!data.user) {
       var user = data.user.name
       var timestamp = data.created_at
@@ -85,9 +85,6 @@ function renderMessage(data) {
   // messages.appendChild(br)
 
   chatWrapper.scrollTop = chatWrapper.scrollHeight;
-
-
-})
 }
 function loadMessages(channel) {
 
@@ -106,7 +103,7 @@ function renderMessages(channel) {
   console.log(channel)
   loadMessages(channel).then(json => {
   json.messages.forEach(message => {
-      renderMessage(message)
+      translate(getCookie('user_lang'), message.message).then(text => renderMessage(message, text))
     })
     return 'done'
   }).then(res => {

@@ -19,7 +19,7 @@ function newChannel(channelName) {
       console.log(data);
       switch (data.message_type) {
         case "message":
-          renderMessage(data)
+        translate(getCookie('user_lang'), data.message).then(message => renderMessage(data, message))
           break;
         case "message_error":
           console.log("RECIEVED AN ERROR MESSAGE")
