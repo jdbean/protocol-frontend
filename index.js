@@ -10,6 +10,7 @@ let renderMain = function() {
 }
 
 let switchChannel = function (channelName = "new_room") {
+  chatHistory.innerHTML = ""
   newChannel(channelName)
   messageListener(channelName)
   renderMessages(channelName)
