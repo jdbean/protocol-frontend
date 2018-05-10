@@ -1,29 +1,3 @@
-/* #message-form {
-  display: inline-block;
-  position: relative;
-  left: 20%;
-  top: 50em;
-  width: 150%;
-
-  font-size: 100%;
-}
-input {
-  width: 50%;
-}
-p {
-  top: 40em;
-  display: inline-block;
-  border-color: black;
-  position: relative;
-  left: 20%;
-}
-#messages {
-  position: absolute;
-  bottom: 100%;
-  left: 30%;
-} */
-
-
 @import url(https://fonts.googleapis.com/css?family=Lato:400,700);
 *, *:before, *:after {
   box-sizing: border-box;
@@ -42,6 +16,7 @@ body {
 
 .container {
   margin: 0 auto;
+  height: 877px;
   width: 750px;
   background: #444753;
   border-radius: 5px;
