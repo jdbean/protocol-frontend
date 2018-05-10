@@ -7,6 +7,7 @@ let renderMain = function() {
   let messages = document.createElement('div')
   renderMessageForm()
   renderMessagesDiv()
+  renderMessages('new_room')
   // renderMembersListDiv()
 }
 
