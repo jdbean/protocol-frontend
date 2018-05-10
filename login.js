@@ -38,7 +38,7 @@ function authUser(formData) {
 
 
 function renderLoginForm() {
-  mainContentContainer.innerHTML = `
+  loginContent.innerHTML = `
     <form id=loginForm>
       Username:<br>
       <input type="text" id=userName name="username"><br>

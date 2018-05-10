@@ -23,6 +23,7 @@ p {
   left: 30%;
 } */
 
+
 @import url(https://fonts.googleapis.com/css?family=Lato:400,700);
 *, *:before, *:after {
   box-sizing: border-box;
@@ -33,6 +34,10 @@ body {
   font: 14px/20px "Lato", Arial, sans-serif;
   padding: 40px 0;
   color: white;
+}
+
+#mainContentContainer {
+  display: none;
 }
 
 .container {
@@ -67,6 +72,10 @@ body {
   height: 770px;
 }
 .chat-history ul{
+  list-style-type: none;
+}
+
+#chatHistory ul{
   list-style-type: none;
 }
 .people-list ul li {
