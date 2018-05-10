@@ -15,3 +15,7 @@ function translate(language, text) {
     }
   }).then(res => res.json()).then(json => json.message)
 }
+
+function changeLanguage(language, text) {
+  
+}

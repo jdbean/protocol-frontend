@@ -6,7 +6,7 @@ let renderMain = function() {
   loginContent.style.display = 'none'
   mainContentContainer.style.display = 'block'
   switchChannel()
-
+  
 }
 
 let switchChannel = function (channelName = "new_room") {

@@ -10,15 +10,18 @@ function messageListener(channelName) {
   });
   messageForm.addEventListener('submit', (e) => {
     e.preventDefault()
+    if (messageToSend.value.trim() !== "") {
     let date = new Date()
       channel.send({
-        to: `chat_${channelName}`,
+        to: `${getCookie('current_room')}`,
         message: messageToSend.value,
         sender: getCookie('user_name'),
         time: date
       })
+    }
       messageToSend.value = ""
   })
+
 }
 
 function renderMessagesDiv() {
@@ -104,7 +107,9 @@ function renderMessages(channel) {
   console.log(channel)
   var promises = []
   loadMessages(channel).then(json => {
+
   json.messages.forEach(message => {
+
       promises.push(translate(getCookie('user_lang'), message.message))
       console.log('hi')
     })
