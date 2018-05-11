@@ -20,7 +20,9 @@
   <script src = 'login.js'></script>
   <script src = 'index.js'></script>
   <script src = 'cookies.js'> </script>
+  <script src = 'languages.js'>
 
+  </script>
   <div id= "loginContent">
   </div>
 
@@ -47,6 +49,7 @@
       <!-- end chat-header -->
 
       <div id= "chatWrapper" class="chat-history">
+
         <ul id='chatHistory'>
         </ul>
         <div id='loading' class="loader"></div>
@@ -62,6 +65,10 @@
         <button id="sendButton">Send</button>
 
         </form>
+        <select id= "selectLang">
+
+        </select>
+        <button id= "langButton" onclick="changeLanguage(selectLang.value)">Change Language</button>
           <button onclick="logOut()" id=deleteCookies>Logout</button>
       </div>
       <!-- end chat-message -->

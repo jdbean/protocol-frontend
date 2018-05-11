@@ -5,8 +5,9 @@ let renderMain = function() {
   establishSocket()
   loginContent.style.display = 'none'
   mainContentContainer.style.display = 'block'
+  renderLanguageSelect()
   switchChannel()
-  
+
 }
 
 let switchChannel = function (channelName = "new_room") {
