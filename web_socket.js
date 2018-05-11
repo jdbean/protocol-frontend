@@ -20,11 +20,11 @@ function newChannel(channelName) {
       console.log(data);
       switch (data.message_type) {
         case "message":
-        if (!last) {
-          var last = [""]
+        if (getCookie('last_message')) {
+          document.cookie = `last_message=; expires=` + setExpiration(60).toUTCString() + "; path=/";
         }
-        if (data.to === getCookie('current_room') && last[0] !== data) {
-        last.unshift(data)
+        if (data.to === getCookie('current_room') && getCookie('last_message') !== String(data)) {
+          document.cookie = `last_message=${data}; expires=` + setExpiration(60).toUTCString() + "; path=/";
         translate(getCookie('user_lang'), data.message).then(message => renderMessage(data, message))
       }
 
