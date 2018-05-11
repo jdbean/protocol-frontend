@@ -20,10 +20,14 @@ function newChannel(channelName) {
       console.log(data);
       switch (data.message_type) {
         case "message":
-        if (data.to === getCookie('current_room')) {
-        
+        if (!last) {
+          var last = [""]
+        }
+        if (data.to === getCookie('current_room') && last[0] !== data) {
+        last.unshift(data)
         translate(getCookie('user_lang'), data.message).then(message => renderMessage(data, message))
       }
+
           break;
         case "message_error":
           console.log("RECIEVED AN ERROR MESSAGE")
