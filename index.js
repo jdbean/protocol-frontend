@@ -5,7 +5,6 @@ let renderMain = function() {
   establishSocket()
   loginContent.style.display = 'none'
   mainContentContainer.style.display = 'block'
-  renderLanguageSelect()
   switchChannel()
 
 }
@@ -42,9 +41,8 @@ let renderChannelList = function() {
       newChannel.innerHTML=`
       <li class="clearfix">
         <div class="about">
-          <div class="name">${channel.title}</div>
+          <div class="name"><i class="fa fa-circle online"></i>${channel.title}</div>
           <div class="status">
-            <i class="fa fa-circle online"></i> CHANNEL MEMBERS TOTAL
           </div>
         </div>
       </li>
