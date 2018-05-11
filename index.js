@@ -6,8 +6,13 @@ let renderMain = function() {
   loginContent.style.display = 'none'
   mainContentContainer.style.display = 'block'
   renderLanguageSelect()
-  switchChannel()
-
+  if (getCookie('current_room')) {
+    let room = getCookie('current_room').split('chat_')[1]
+  switchChannel(room)
+}
+  else {
+    switchChannel()
+  }
 }
 
 let switchChannel = function (channelName = "new_room") {

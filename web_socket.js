@@ -21,6 +21,7 @@ function newChannel(channelName) {
       switch (data.message_type) {
         case "message":
         if (data.to === getCookie('current_room')) {
+        
         translate(getCookie('user_lang'), data.message).then(message => renderMessage(data, message))
       }
           break;
