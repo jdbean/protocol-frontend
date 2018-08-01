@@ -21,7 +21,7 @@ No copying and pasting into Google Translate is required. Every message is trans
 ## Installation and using the app
 
 1. Clone this repo 
-2. Clone the backend repo at https://github.com/jeremygottfried/protocol-backend
+2. Clone the backend repo at https://github.com/jdbean/protocol-backend
 3. Run `bundle install` on the backend repo. 
 4. Run `rails db:create` and `rails db:migrate` on the backend repo. 
 5. Alter the seed.rb file to add your own info. 
